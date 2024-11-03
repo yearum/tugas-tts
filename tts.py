@@ -1,80 +1,135 @@
-import math
+def luas_jajar_genjang(alas, tinggi):
+    return alas * tinggi
 
-print("SELAMAT DATANG DI PROGRAM HITUNG BANGUN")
+def keliling_jajar_genjang(alas, sisi_miring):
+    return 2 * (alas + sisi_miring)
+
+def luas_trapesium(alas_atas, alas_bawah, tinggi):
+    return (alas_atas + alas_bawah) * tinggi / 2
+
+def keliling_trapesium_beraturan(alas_atas, alas_bawah, sisi_miring):
+    return alas_atas + alas_bawah + 2 * sisi_miring
+
+def keliling_trapesium_tak_beraturan(alas_atas, alas_bawah, sisi_miring, sisi_tegak):
+    return alas_atas + alas_bawah + sisi_miring + sisi_tegak
+
+def luas_persegi_lima(sisi):
+    return 5 * sisi * (sisi / (2 * (3**0.5)))
+
+def keliling_persegi_lima(sisi):
+    return 5 * sisi
+
+def luas_permukaan_balok(p, l, t):
+    return 2 * (p * l + p * t + l * t)
+
+def volume_balok(p, l, t):
+    return p * l * t
+
+def luas_permukaan_kerucut(r, s):
+    return 3.14 * r * (r + s)
+
+def volume_kerucut(r, t):
+    return (1/3) * 3.14 * r**2 * t
+
+def luas_permukaan_prisma(sisi, tinggi, jumlah_sisi):
+    return (jumlah_sisi * sisi * tinggi) + (2 * (sisi**2 / (4 * (3**0.5) / 3)))
+
+def volume_prisma(sisi, tinggi, jumlah_sisi):
+    return (sisi**2 / (4 * (3**0.5) / 3)) * tinggi
 
 while True:
-    print("\nMenu Bangun Datar:")
-    print("1. Jajar Genjang")
-    print("2. Trapesium")
-    bangun_datar = input("Pilih nomor bangun datar yang diinginkan atau ketik 'exit' untuk keluar: ")
-    
-    if bangun_datar.lower() == 'exit':
+    print("""
+    Pilih Jenis Bangun:
+    1. Bangun Datar
+    2. Bangun Ruang
+    """)
+    jenis_bangun = input("Pilih (1/2) atau 'next' untuk keluar: ")
+    if jenis_bangun.lower() == 'q':
+        print("Program dihentikan.")
         break
 
-    print("\nMenu Bangun Ruang:")
-    print("1. Balok")
-    print("2. Kerucut")
-    print("3. Prisma")
-    bangun_ruang = input("Pilih nomor bangun ruang yang diinginkan atau ketik 'exit' untuk keluar: ")
+    if jenis_bangun == '1':
+        print("""
+        Pilih Bangun Datar:
+        1. Jajar Genjang
+        2. Trapesium
+           a. Beraturan
+           b. Tak Beraturan
+        3. Persegi Lima
+        """)
+        bangun_datar = input("Pilih Bangun Datar (1/2a/2b/3): ")
+        
+        if bangun_datar == '1':
+            alas = float(input("Masukkan alas jajar genjang: "))
+            tinggi = float(input("Masukkan tinggi jajar genjang: "))
+            sisi_miring = float(input("Masukkan sisi miring jajar genjang: "))
+            print("Nama Bangun : Jajar Genjang")
+            print("Luas :", luas_jajar_genjang(alas, tinggi))
+            print("Keliling :", keliling_jajar_genjang(alas, sisi_miring))
+        
+        elif bangun_datar == '2a':
+            alas_atas = float(input("Masukkan alas atas trapesium: "))
+            alas_bawah = float(input("Masukkan alas bawah trapesium: "))
+            tinggi = float(input("Masukkan tinggi trapesium: "))
+            sisi_miring = float(input("Masukkan sisi miring trapesium: "))
+            print("Nama Bangun : Trapesium Beraturan")
+            print("Luas :", luas_trapesium(alas_atas, alas_bawah, tinggi))
+            print("Keliling :", keliling_trapesium_beraturan(alas_atas, alas_bawah, sisi_miring))
+        
+        elif bangun_datar == '2b':
+            alas_atas = float(input("Masukkan alas atas trapesium: "))
+            alas_bawah = float(input("Masukkan alas bawah trapesium: "))
+            tinggi = float(input("Masukkan tinggi trapesium: "))
+            sisi_miring = float(input("Masukkan sisi miring trapesium: "))
+            sisi_tegak = float(input("Masukkan sisi tegak trapesium: "))
+            print("Nama Bangun : Trapesium Tak Beraturan")
+            print("Luas :", luas_trapesium(alas_atas, alas_bawah, tinggi))
+            print("Keliling :", keliling_trapesium_tak_beraturan(alas_atas, alas_bawah, sisi_miring, sisi_tegak))
 
-    if bangun_ruang.lower() == 'exit':
-        break
+        elif bangun_datar == '3':
+            sisi = float(input("Masukkan panjang sisi persegi lima: "))
+            print("Nama Bangun : Persegi Lima")
+            print("Luas :", luas_persegi_lima(sisi))
+            print("Keliling :", keliling_persegi_lima(sisi))
 
-    if bangun_datar == '1':
-        print("\nAnda memilih Jajar Genjang.")
-        alas = float(input("Masukkan panjang alas: "))
-        tinggi = float(input("Masukkan tinggi: "))
-        sisi_miring = float(input("Masukkan panjang sisi miring: "))
-        luas_datar = alas * tinggi
-        keliling_datar = 2 * (alas + sisi_miring)
-        print("Luas Jajar Genjang:", luas_datar)
-        print("Keliling Jajar Genjang:", keliling_datar)
+        else:
+            print("Pilihan tidak valid.")
 
-    elif bangun_datar == '2':
-        print("\nAnda memilih Trapesium.")
-        alas_atas = float(input("Masukkan panjang alas atas: "))
-        alas_bawah = float(input("Masukkan panjang alas bawah: "))
-        tinggi = float(input("Masukkan tinggi: "))
-        sisi_miring1 = float(input("Masukkan panjang sisi miring 1: "))
-        sisi_miring2 = float(input("Masukkan panjang sisi miring 2: "))
-        luas_datar = 0.5 * (alas_atas + alas_bawah) * tinggi
-        keliling_datar = alas_atas + alas_bawah + sisi_miring1 + sisi_miring2
-        print("Luas Trapesium:", luas_datar)
-        print("Keliling Trapesium:", keliling_datar)
+    elif jenis_bangun == '2':
+        print("""
+        Pilih Bangun Ruang:
+        1. Balok
+        2. Kerucut
+        3. Prisma
+        """)
+        bangun_ruang = input("Pilih Bangun Ruang (1/2/3): ")
+
+        if bangun_ruang == '1':
+            p = float(input("Masukkan panjang balok: "))
+            l = float(input("Masukkan lebar balok: "))
+            t = float(input("Masukkan tinggi balok: "))
+            print("Nama Bangun : Balok")
+            print("Luas Permukaan :", luas_permukaan_balok(p, l, t))
+            print("Volume Bangun :", volume_balok(p, l, t))
+        
+        elif bangun_ruang == '2':
+            r = float(input("Masukkan jari-jari kerucut: "))
+            t = float(input("Masukkan tinggi kerucut: "))
+            s = float(input("Masukkan panjang garis pelukis kerucut: "))
+            print("Nama Bangun : Kerucut")
+            print("Luas Permukaan :", luas_permukaan_kerucut(r, s))
+            print("Volume Bangun :", volume_kerucut(r, t))
+
+        elif bangun_ruang == '3':
+            sisi = float(input("Masukkan panjang sisi alas prisma: "))
+            tinggi = float(input("Masukkan tinggi prisma: "))
+            jumlah_sisi = int(input("Masukkan jumlah sisi alas prisma (4/5/6): "))
+            print("Nama Bangun : Prisma")
+            print("Luas Permukaan :", luas_permukaan_prisma(sisi, tinggi, jumlah_sisi))
+            print("Volume Bangun :", volume_prisma(sisi, tinggi, jumlah_sisi))
+        
+        else:
+            print("Pilihan tidak valid.")
 
     else:
-        print("Pilihan bangun datar tidak valid.")
-
-    if bangun_ruang == '1':
-        print("\nAnda memilih Balok.")
-        panjang = float(input("Masukkan panjang: "))
-        lebar = float(input("Masukkan lebar: "))
-        tinggi = float(input("Masukkan tinggi: "))
-        luas_permukaan = 2 * (panjang * lebar + panjang * tinggi + lebar * tinggi)
-        volume = panjang * lebar * tinggi
-        print("Luas Permukaan Balok:", luas_permukaan)
-        print("Volume Balok:", volume)
-
-    elif bangun_ruang == '2':
-        print("\nAnda memilih Kerucut.")
-        radius = float(input("Masukkan jari-jari: "))
-        tinggi = float(input("Masukkan tinggi: "))
-        sisi_miring = math.sqrt(radius ** 2 + tinggi ** 2)
-        luas_permukaan = math.pi * radius * (radius + sisi_miring)
-        volume = (1/3) * math.pi * radius ** 2 * tinggi
-        print("Luas Permukaan Kerucut:", luas_permukaan)
-        print("Volume Kerucut:", volume)
-
-    elif bangun_ruang == '3':
-        print("\nAnda memilih Prisma.")
-        sisi_alas = float(input("Masukkan panjang sisi alas segi empat: "))
-        tinggi_prisma = float(input("Masukkan tinggi prisma: "))
-        luas_permukaan = 2 * sisi_alas**2 + 4 * sisi_alas * tinggi_prisma
-        volume = sisi_alas**2 * tinggi_prisma
-        print("Luas Permukaan Prisma:", luas_permukaan)
-        print("Volume Prisma:", volume)
-
-    else:
-        print("Pilihan bangun ruang tidak valid.")
-
-    print("\n---- Penghitungan selesai ----\n")
+        print("Pilihan tidak valid.")
